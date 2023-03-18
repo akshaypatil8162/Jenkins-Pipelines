@@ -1,38 +1,38 @@
-pipeline {
-agent {label 'node-1'}
-
-	stages {
-		stage ('install-nginx')
-		{
-			steps {
-				sh 'apt install nginx -y'
-			}
-		}
-		
-		stage ('deploy-index')
-		{
-			steps {
-				sh """
-					echo "Welcome to Young Minds. 
-						Keep Learning!! Keep Growing!! " >> /var/www/html/index.html
-				"""
-			}
-		}
-
-		stage ('Nginx-stop')
-		{
-			steps {
-				sh 'systemctl nginx stop'
-			}
-		}
-
-		stage ('Start-nginx')
-		{
-			steps {
-				sh 'systemctl nginx Start'
-			}
-		}
-		
-	}
-
-}
+pipeline{
+    
+    agent any
+    
+      stages{
+          
+             stage('install-nginx')
+               {
+                 steps{
+                 sh 'sudo apt-get install nginx -y'
+                 }
+               }
+         
+             stage('deploy-nginx')
+               {
+                 steps{
+                 sh"""
+                 echo "Welcome to Jenkins Project" >> /var/www/html/index.html
+                 """
+                 }
+               }
+        
+             stage('nginx-stop')
+             {
+                 steps{
+                sh 'sudo systemctl stop nginx'
+             }
+            }
+             stage('start-nginx')
+             {
+                 steps{
+                  sh'sudo systemctl start nginx'
+              }
+             }
+            
+            
+        }
+    }
