@@ -33,6 +33,20 @@ pipeline{
               }
              }
             
+            stage('install-Maven'){
+                
+                steps{
+                    sh 'sudo apt-get update && sudo apt-get install -y maven'
+                }
+            }
+            
+            stage('maven-version'){
+                
+                steps{
+                   sh 'mvn -version'
+                }
+            }
+            
             
         }
     }
